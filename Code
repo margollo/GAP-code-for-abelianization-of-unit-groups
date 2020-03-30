@@ -1,0 +1,135 @@
+# The group T from cite[Par93].
+G := SmallGroup(12,1);
+ag := G.2*G.3;
+bg := G.1;
+
+ZG := GroupRing(Integers, G);
+l := Embedding(G, ZG);
+a := ag^l;
+b := bg^l;
+z := One(ZG);
+
+x1 := z + (z + a^3)*(-a^2+b*a^2)*(z-a^2);
+x2 := z + (z + a^3)*(-a^2+b*a)*(z-a^2);
+x3 := z + (z + a^3)*(-a^2+b)*(z-a^2);
+x4 := z + (-z + (z + a^3)*a^2*(a^2+b*a^2))*(z-a^2);
+x5 := z + (-z - a^2 + (z + a^3)*a*(z-a-2*b*a^2))*(z-a^2);
+
+x1^a = x2;
+x1^b = x1^-1;
+x2^a = x3;
+x2^b = x3^-1;
+x3^a = x1;
+x3^b = x2^-1;
+x4^a = x2*x4^-1*x5;
+x4^b = x1^-1*x5*x3^-1;
+x5^a = x2*x4^-1*x1;
+x5^b = x1^-1*x4*x2^-1;
+
+#############################
+# The group P from [JL91].
+G := SmallGroup(16,4);
+ag := G.2;
+bg := G.1;
+ZG := GroupRing(Integers, G);
+l := Embedding(G, ZG);
+a := ag^l;
+b := bg^l;
+z := One(ZG);
+
+v1 := z + (a + b)*(z-a^2)*(z+b^2);
+v2 := z + (-2*z + a - 2*a*b)*(z-a^2)*(z + b^2);
+v3 := z + (2*z - b - 2*a*b)*(z-a^2)*(z + b^2);
+v4 := z + (-a + a*b)*(z-a^2)*(z + b^2);
+v5 := z + (-8*z - 19*a -14*b + 15*a*b)*(z-a^2)*(z + b^2);
+v6 := z + (8*z - 18*a - 14*b  + 14*a*b)*(z-a^2)*(z + b^2);
+v7 := z + (13*a + 5*b - 12*a*b)*(z-a^2)*(z + b^2);
+v8 := z + (-2*z - 7*a - 4*b + 6*a*b)*(z-a^2)*(z + b^2);
+v9 := z + (2*z - 20*a - 9*b + 18*a*b)*(z-a^2)*(z + b^2);
+
+v1^a = v3*v2; 
+v1^b = v2^-1*v3^-1;
+v2^a = v3*v1; 
+v2^b = v2^-1;
+v3^a = v3^-1; 
+v3^b = v1^-1*v2;
+v4^a = v3*v5^-1*v7*v9*v6^-1*v1; 
+v4^b = v4^-1;
+v5^a = v3*v5^-1*v7*v9*v8*v3^-1; 
+v5^b = v4^-1*v8^-1*v6^-1*v2;
+v6^a = v3*v2*v4^-1*v9^-1*v7^-1*v5*v3^-1;
+v6^b = v2^-1*v5^-1*v8*v4;
+v7^a = v3*v5^-1*v7*v9*v8*v7^-1*v5*v3^-1; 
+v7^b = v4^-1*v8^-1*v9^-1*v4;
+v8^a = v3*v5^-1*v7*v9*v5*v3^-1; 
+v8^b = v4^-1*v8^-1*v4;
+v9^a = v3*v5^-1*v7*v9^-1*v7^-1*v5*v3^-1;
+v9^b = v4^-1*v7^-1*v8*v4;
+
+################################################
+# The group D16+ from [PdRR05]
+alpha := [[E(8),0],[0,E(8)^-1]]; 
+A := [[1,-4],[0,1]];
+P := [[-1-4*E(4),2*E(4)],[2,-1]];
+Q := [[-3-4*E(4),4+6*E(4)],[2,-3]];
+R := [[-3-2*E(4),2+4*E(4)],[2*E(4),1-2*E(4)]];
+S := [[3-2*E(4),-2+4*E(4)],[2*E(4),-1-2*E(4)]]; 
+
+A0 := A;
+A1 := alpha^-1*A*alpha;
+P0 := P;
+P1 := alpha^-1*P*alpha;
+P2 := alpha^-2*P*alpha^2;
+P3 := alpha^-3*P*alpha^3;
+Q0 := Q;
+Q1 := alpha^-1*Q*alpha;
+Q2 := alpha^-2*Q*alpha^2;
+Q3 := alpha^-3*Q*alpha^3;
+R0 := R;
+R1 := alpha^-1*R*alpha;
+R2 := alpha^-2*R*alpha^2;
+R3 := alpha^-3*R*alpha^3;
+S0 := S;
+S1 := alpha^-1*S*alpha;
+S2 := alpha^-2*S*alpha^2;
+S3 := alpha^-3*S*alpha^3;
+
+a := [[0,-E(4)],[-1,0]];
+b := [[1,0],[0,-1]];
+
+A0^a = P1^-1*A0*P3;
+A0^b = A0^-1;
+A1^a = P0^-1*A1^-1*P2;
+A1^b = A1^-1;
+P0^a = P2^-1;  
+P0^b = P2;
+Q0^a = P2^-1*Q3^-1*P3; 
+Q0^b = Q2;
+R0^a = P0^-1*A1^-1*Q3^-1*S3; 
+R0^b = R2;
+S0^a = P2^-1*S3^-1*P3;  
+S0^b = S2;
+P1^a = P1^-1;  
+P1^b = P3;
+Q1^a = P1^-1*Q2^-1*P2;  
+Q1^b = Q3;
+R1^a = P0^-1*Q1^-1*A0*S2;  
+R1^b = R3;
+S1^a = P1^-1*S2^-1*P2;  
+S1^b = S3;
+P2^a = P0^-1;  
+P2^b = P0;
+Q2^a = P0^-1*Q1^-1*P1;  
+Q2^b = Q0;
+R2^a = P2^-1*A1*Q1^-1*S1;  
+R2^b = R0;
+S2^a = P0^-1*S1^-1*P1;  
+S2^b = S0;
+P3^a = P3^-1;  
+P3^b = P1;
+Q3^a = P3^-1*Q0^-1*P0;  
+Q3^b = Q1;
+R3^a = P1^-1*A0*Q0^-1*S0;  
+R3^b = R1;
+S3^a = P3^-1*S0^-1*P0;  
+S3^b = S1;
